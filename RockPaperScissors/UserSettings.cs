@@ -7,14 +7,25 @@ namespace RockPaperScissors
 {
     public class UserSettings
     {
-        // Define defaults in one place only
-        private const string DefaultBackgroundColor = "Black";
-        private const string DefaultForegroundColor = "Green";
+        public class ConsoleColorSettings
+        {
+            [JsonPropertyName("Background_Color")]
+            public string BackgroundColor { get; set; }
 
-        [JsonPropertyName("Background_Color")]
-        public string BackgroundColor { get; set; } = DefaultBackgroundColor;
-        [JsonPropertyName("Text_Color")]
-        public string ForegroundColor { get; set; } = DefaultForegroundColor;
+            [JsonPropertyName("Text_Color")]
+            public string ForegroundColor { get; set; }
+            public ConsoleColorSettings(
+                string backgroundColor = DefaultColors.NormalBackground, string foregroundColor = DefaultColors.NormalForeground)
+            {
+                BackgroundColor = backgroundColor;
+                ForegroundColor = foregroundColor;
+            }
+        }
+
+        public ConsoleColorSettings DefaultConsoleColors { get; set; } = 
+            new(DefaultColors.NormalBackground, DefaultColors.NormalForeground);
+        public ConsoleColorSettings StatisticsColors { get; set; } = 
+            new(DefaultColors.StatisticsBackground, DefaultColors.StatisticsForeground);
 
         private static UserSettings? _instance;
 
@@ -36,21 +47,18 @@ namespace RockPaperScissors
                         _instance = JsonSerializer.Deserialize<UserSettings>(json) ?? new UserSettings();
                     }
 
-                    _instance.ApplyConsoleColorsFromSettings();
+                    Utilities.ChangeConsoleColors(_instance.DefaultConsoleColors, true);
                 }
 
                 return _instance;
             }
         }
-
-        private void ApplyConsoleColorsFromSettings()
-        {
-            ConsoleColor bg = Enum.TryParse(
-                BackgroundColor, out ConsoleColor parsedBg) ? parsedBg : Enum.Parse<ConsoleColor>(DefaultBackgroundColor);
-            ConsoleColor fg = Enum.TryParse(
-                ForegroundColor, out ConsoleColor parsedFg) ? parsedFg : Enum.Parse<ConsoleColor>(DefaultForegroundColor);
-
-            Utilities.ChangeConsoleColors(bg, fg);
-        }
+    }
+    public static class DefaultColors
+    {
+        public const string NormalBackground = "Black";
+        public const string NormalForeground = "Green";
+        public const string StatisticsBackground = "Black";
+        public const string StatisticsForeground = "Red";
     }
 }
