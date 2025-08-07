@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RockPaperScissors.Logic\RockPaperScissors.Logic.csproj" />
+  </ItemGroup>
+
 </Project>

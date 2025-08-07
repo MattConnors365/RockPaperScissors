@@ -1,14 +1,9 @@
 ﻿using System;
 
-namespace RockPaperScissors
+namespace RockPaperScissors.CLI
 {
     internal class Utilities
     {
-        public static string CapitalizeFirstLetter(string input)
-        {
-            if (string.IsNullOrEmpty(input)) { return input; }
-            return (char.ToUpper(input[0]) + input.Substring(1));
-        }
         public static void ChangeConsoleColors(UserSettings.ConsoleColorSettings colorSettings, bool DoClearConsole = false)
         {
             ConsoleColor bg = Enum.TryParse<ConsoleColor>(colorSettings.BackgroundColor, out var parsedBg) ? parsedBg : Enum.Parse<ConsoleColor>(DefaultColors.NormalBackground);

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RockPaperScissors
+namespace RockPaperScissors.CLI
 {
     class Program
     {
@@ -12,7 +12,7 @@ namespace RockPaperScissors
             Console.WriteLine("You will play against the computer.");
             int Times = Logic.GetAmountOfTimes();
             Console.WriteLine($"You chose to play {Times} games.");
-            Logic.ShowStats(Logic.PlayMultipleGames((uint)Times));
+            Logic.ShowStats(Logic.RunInteractiveGameLoop((uint)Times));
             Console.ReadKey(true);
         }
     }

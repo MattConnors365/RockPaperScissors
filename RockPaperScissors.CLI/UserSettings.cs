@@ -3,7 +3,7 @@ using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace RockPaperScissors
+namespace RockPaperScissors.CLI
 {
     public class UserSettings
     {
