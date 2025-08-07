@@ -4,8 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RockPaperScissors.WPF"
+        
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        
         mc:Ignorable="d"
-        Title="MainWindow" 
+        Title="Rock, Paper, Scissors!" 
         Height="720" Width="1280">
-    <Grid/>
+    <Grid Margin="20">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="500">
+            <TextBlock Text="Welcome to Rock, Paper, Scissors!" FontSize="24" Margin="0,0,0,20" TextAlignment="Center" />
+            <TextBlock Text="How many games would you like to play?" Margin="0,0,0,5" />
+            <xctk:IntegerUpDown Name="GameCountInput" Minimum="1" Value="3" />
+            <Button Content="Start Game" Click="StartGame_Click" Height="40" />
+        </StackPanel>
+    </Grid>
 </Window>

@@ -20,5 +20,17 @@ namespace RockPaperScissors.WPF
         {
             InitializeComponent();
         }
+        private void StartGame_Click(object sender, RoutedEventArgs e)
+        {
+            if (int.TryParse(GameCountInput.Text, out int rounds) && rounds > 0)
+            {
+                MessageBox.Show($"Starting game with {rounds} rounds!");
+                // TODO: Transition to game screen or open a new window
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid number of rounds.");
+            }
+        }
     }
 }
